@@ -26,6 +26,11 @@ def create_app(test_config=None):
     except OSError:
         pass
     
+    #Hello world test, to test hte factory of the app
+    @app.route('/hello')
+    def hello():
+        return 'Hello, World!'
+        
     #import the db file from the relative path
     from . import db
     #initiate the close of the db and the cli command through the factory function here
