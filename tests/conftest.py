@@ -44,3 +44,23 @@ def client(app):
 @pytest.fixture
 def runner(app):
     return app.test_cli_runner()
+
+#Create a class to simulate a logged in user so this does not to be written everytime a test is made on a view, the client passes this with a fixture for each test 
+class AuthActions(object):
+    #Add the methods to login lgout, identify client
+    def __init__(self, client):
+        self._client = client
+
+    def login(self, username='test', password='test'):
+        return self._client.post(
+            '/auth/login',
+            data={'username': username, 'password': password}
+        )
+
+    def logout(self):
+        return self._client.get('/auth/logout')
+
+#Add it as as fixture as the user and pword have been already inserted with the app fixture.
+@pytest.fixture
+def auth(client):
+    return AuthActions(client)
