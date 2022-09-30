@@ -1,6 +1,7 @@
 from crypt import methods
 import functools
 from operator import methodcaller
+from urllib import response
 
 
 from flask import (
@@ -26,11 +27,11 @@ def register():
         db = get_db()
         #Setting an error
         error = None
-
+        
         if not username:
-            error = 'Username is required'
+            error = 'Username is required.'
         elif not password:
-            error = 'Password is required'
+            error = 'Password is required.'
         
         if error is None:
             try:

@@ -6,8 +6,8 @@ from flaskr.db import get_db
 #Testing the index where the user can add, delete and edit posts, test checks if everything is there
 def test_index(client, auth):
     response = client.get('/')
-    assert b"Log In" in response.data
-    assert b"Register" in response.data
+    assert b'Log In' in response.data
+    assert b'Register' in response.data
 #After login there should be some more options hence the below
     auth.login()
     response = client.get('/')
